@@ -24,6 +24,7 @@ try {
         confirmed: 0,
 //         deaths: 0,
         lastupdatedtime: "",
+        firstReported: "",
 //         recovered: 0,
         delta: {
           confirmed: 0
@@ -33,6 +34,10 @@ try {
     const currentDistrict = acc[stateName].districtData[districtName];
   
     currentDistrict.confirmed++;
+    if(currentDistrict.firstReported === ""){
+      currentDistrict.firstReported =  row.dateannounced;
+    }
+    
     if (isToday) {
       currentDistrict.delta.confirmed++;
     }
@@ -64,4 +69,3 @@ try {
 } catch(err) {
   console.log('Error processing district wise data', err);
 }
-
